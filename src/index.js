@@ -1,0 +1,61 @@
+let dataCepFind = []
+
+const getData = async(cep) => {
+  await fetch(`https://viacep.com.br/ws/${cep}/json/`).then(response => {
+    response.json()
+      .then(data => { showData(data) })
+  })
+}
+const showData = async (result) => {
+
+  let resultado = Array(result)
+
+  resultado.forEach(element => {
+    dataCepFind.push(element)
+
+  });
+};
+
+
+document.addEventListener("keypress", async (e) => {
+
+  let cep = document.getElementById("cep").value;
+
+  if (e.key === "Enter") {
+
+    let scriptHtml = document.getElementById("form");
+
+    getData(cep);
+  
+    dataCepFind.forEach(data => {
+      document.getElementById("cep").value = cep;
+
+      scriptHtml.innerHTML += `<br>`
+      scriptHtml.innerHTML += `
+        <label>Data</label>
+        <input type="text" id="data" value="${new Date()}">
+        <br>`
+
+      scriptHtml.innerHTML += `
+         <label>Rua</label>
+        <input type="text" id="logradouro" value="${data.logradouro}">
+        <br>`
+      scriptHtml.innerHTML += `
+         <label>Bairro</label>
+        <input type="text" id="bairro" value="${data.bairro}">
+        <br>`
+      scriptHtml.innerHTML += `
+         <label>Número</label>
+        <input type="text" id="numero">
+        <br>`
+      scriptHtml.innerHTML += `
+         <label>Cidade</label>
+        <input type="text" id="cidade" value="${data.localidade}">
+        <br>`
+      scriptHtml.innerHTML += `
+         <label>Estado</label>
+        <input type="text" id="estado" value="${data.estado}">
+        <br>`
+    })
+  }
+})
