@@ -4,15 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vendas</title>
-  <script src="./src/index.js"></script>
+  <script src="./src/index.js" type="module"></script>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+  
+  <div class=""><input type="text" min="30" class="inputSearchProducts"> <button>Adicionar</button></div>
+  <div class="cardproduct">
+    <table>
+      <caption>
+        Compra de Produtos
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Descrição</th>
+          <th scope="col">Fornecedor</th>
+          <th scope="col">Preço</th>
+        </tr>
+      </thead>
+      <tbody class="products">
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="2">Subtotal</th>
+          <td id="amount"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 
   <main id="form">
+    <label>Destinatário:</label>
+    <input type="text" id="name">
     <label>CEP:</label>
     <input type="text" id="cep">
 
   </main>
+
+  <button>Comprar</button>
+  <hr>
   
 </body>
 </html>

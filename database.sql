@@ -32,14 +32,15 @@ CREATE table db_sales_semeq.sales_product(
 
 CREATE TABLE db_sales_semeq.sales(
  id INT AUTO_INCREMENT PRIMARY KEY,
- date_sale  DATETIME,
- sales_product_id INT
+ date_sale  DATETIME
 );
 ALTER TABLE db_sales_semeq.sales_product ADD FOREIGN KEY (sales_id) REFERENCES db_sales_semeq.sales(id);
 
 ALTER TABLE db_sales_semeq.sales_product ADD FOREIGN KEY (product_id) REFERENCES db_sales_semeq.sales(id);
 
-ALTER TABLE db_sales_semeq.sales ADD FOREIGN KEY (sales_product_id) REFERENCES db_sales_semeq.sales_product(id);
+ALTER TABLE db_sales_semeq.sales ADD COLUMN total_price FLOAT(8);
+ALTER TABLE db_sales_semeq.sales ADD COLUMN cod_number VARCHAR(60);
+
 
 
 -- Inserts from suppliers
@@ -50,5 +51,5 @@ INSERT INTO db_sales_semeq.supplier(fantasy_name, CNPJ) VALUES("Shop Plus", "123
 INSERT INTO db_sales_semeq.product(description_name, amount, supplier) VALUES("camiseta", 40.0, 1);
 INSERT INTO db_sales_semeq.product(description_name, amount, supplier) VALUES("short", 50.0, 1);
 
-
+select * from db_sales_semeq.sales;
 
