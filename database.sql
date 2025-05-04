@@ -1,0 +1,66 @@
+
+
+CREATE DATABASE db_sales_semeq;
+
+CREATE TABLE db_sales_semeq.supplier(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    fantasy_name VARCHAR(30),
+    CNPJ VARCHAR(14)
+);
+
+CREATE TABLE db_sales_semeq.product(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    description_name VARCHAR(30),
+    amount FLOAT(8),
+    supplier VARCHAR(50)
+);
+
+CREATE table db_sales_semeq.product_supplier(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    supplier_id INT
+);
+
+ALTER TABLE db_sales_semeq.product_supplier ADD FOREIGN KEY (supplier_id) REFERENCES db_sales_semeq.supplier(id);
+ALTER TABLE db_sales_semeq.product_supplier ADD FOREIGN KEY (product_id) REFERENCES db_sales_semeq.product(id);
+
+CREATE table db_sales_semeq.sales_product(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    sales_id INT
+);
+
+CREATE TABLE db_sales_semeq.sales(
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ date_sale  DATETIME
+);
+ALTER TABLE db_sales_semeq.sales_product ADD FOREIGN KEY (sales_id) REFERENCES db_sales_semeq.sales(id);
+
+ALTER TABLE db_sales_semeq.sales_product ADD FOREIGN KEY (product_id) REFERENCES db_sales_semeq.sales(id);
+
+ALTER TABLE db_sales_semeq.sales ADD COLUMN total_price FLOAT(8);
+ALTER TABLE db_sales_semeq.sales ADD COLUMN cod_number VARCHAR(60);
+
+
+
+-- Inserts from suppliers
+INSERT INTO db_sales_semeq.supplier(fantasy_name, CNPJ) VALUES("Shop Lola", "12345678912345");
+INSERT INTO db_sales_semeq.supplier(fantasy_name, CNPJ) VALUES("Shop Plus", "12345678912346");
+
+-- Inserts from products
+INSERT INTO db_sales_semeq.product(description_name, amount, supplier) VALUES("camiseta", 40.0, 1);
+INSERT INTO db_sales_semeq.product(description_name, amount, supplier) VALUES("short", 50.0, 1);
+
+select * from db_sales_semeq.sales_product;
+
+CREATE TABLE db_sales_semeq.customer(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(30),
+    email VARCHAR(30),
+    password_customer VARCHAR(80),
+    cellphone VARCHAR(11),
+    CPF VARCHAR(14)
+)
+
+INSERT INTO db_sales_semeq.customer(full_name, email, password_customer, cellphone, CPF) VALUES("Ana Maria", "anamaria@gmail.com", "$2y$10$i.MSgESoazwNN7xSC.Q0LOvjxVdl8C0LzafYnTIpVOFEKrA11uF/C", "15991000000", "37486389036");
+
