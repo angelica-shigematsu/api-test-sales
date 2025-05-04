@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+.cardproduct {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+}
+
+table {
+  border: 3px solid blue;
+  margin-bottom: 3%;
+}
+
+thead {
+  border-bottom: 3px solid black;
+}
+
+main {
+  margin: 10% 20%;
+}
+
+.searchProduct {
+  margin: 3% 0%;
+  width: 100%;  
+}
+
+.inputSearchProducts {
+  padding: 1%;
+  width: 80%;
+}
+
+button {
+  padding: 1%;
+}
