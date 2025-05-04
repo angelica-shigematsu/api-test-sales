@@ -1,7 +1,4 @@
-import CreateSalesController from "./controller/SalesController.js"
-import ProductsController from "./controller/ProductController.js";
-
-import fetch from "node-fetch"
+import { create, getProduct } from "../index.js"
 
 let dataCepFind = []
 
@@ -34,7 +31,6 @@ document.addEventListener("keypress", async (e) => {
     let scriptHtml = document.getElementById("form");
 
     getData(cep);
-    console.log("hi");
   
     dataCepFind.forEach(data => {
       document.getElementById("cep").value = cep;
@@ -68,16 +64,14 @@ document.addEventListener("keypress", async (e) => {
     })
   } else if (e.target.id == "Comprar") {
 
-    CreateSalesController.create(products, amount);
+    create(products, amount);
 
   } else if (e.target.id == "Adicionar") {
+
     let product = document.getElementById("inputSearchProducts").value;
-    console.log(product)
+    let listProduct = getProduct(product);
 
-    let getDataProduct = await ProductsController.listByDescription(product);
-    console.log(getDataProduct)
-
-    fillProductsInTable(getDataProduct);
+    fillProductsInTable(listProduct);
   }
 })
 
@@ -85,7 +79,7 @@ const fillProductsInTable = (product) => {
   document.getElementsByTagName("tbody")[0].innerHTML += ` 
     <tr>
       <th scope="row">${product.description}</th>
-      <td id="product_id">${product.id}</td>
+      <td id="product_id" disable>${product.id}</td>
       <td>${product.supplier}</td>
       <td>${product.price}</td>
     </tr>`
