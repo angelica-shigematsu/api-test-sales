@@ -3,7 +3,7 @@
 - O código do frontend está na pasta web <br>
 - O código do backend está na pasta server <br>
 - abrir as pastas em telas diferentes no editor, uma pasta web aberta em um editor e pasta backend em outro editor <br>
-- Na pasta web, no arquivo chamado database.sql, abra e copie o script do banco de dados no sgbd do banco e execute <br>
+- abra o arquivo chamado database.sql, abra e copie o script do banco de dados no sgbd do banco e execute <br>
 - crie na pasta server, o arquivo com o nome de .env, e passe a seguintes informações:
   - USER=
   - PASSWORD=
